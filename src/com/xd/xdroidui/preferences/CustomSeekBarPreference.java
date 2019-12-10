@@ -222,20 +222,11 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     }
 
     @Override
-    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        if (restoreValue) {
-            mCurrentValue = getPersistedInt(mCurrentValue);
-        }
-        else {
-            int temp = 0;
-            try {
-                temp = (Integer) defaultValue;
-            } catch (Exception ex) {
-                Log.e(TAG, "Invalid default value: " + defaultValue.toString());
-            }
-            persistInt(temp);
-            mCurrentValue = temp;
-        }
+    protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
+        // when using PreferenceDataStore, restorePersistedValue is always true (see Preference class for reference)
+        // so we load the persistent value with getPersistedInt if available in the data store, 
+        // and use defaultValue as fallback (onGetDefaultValue has been already called and it loaded the android:defaultValue attr from our xml).
+        mCurrentValue = getPersistedInt((Integer) defaultValue);
     }
 
     public void setDefaultValue(int value) {
