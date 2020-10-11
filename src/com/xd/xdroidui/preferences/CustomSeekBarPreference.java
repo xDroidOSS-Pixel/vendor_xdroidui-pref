@@ -29,21 +29,24 @@ import android.support.v7.preference.*;
 import com.xd.xdroidui.R;
 
 public class CustomSeekBarPreference extends Preference implements SeekBar.OnSeekBarChangeListener {
-    private final String TAG = getClass().getName();
-    private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
-    private static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
-    private static final int DEFAULT_VALUE = 50;
+    protected final String TAG = getClass().getName();
+    protected static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
+    protected static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
+    protected static final int DEFAULT_VALUE = 50;
 
-    private int mMin = 0;
-    private int mInterval = 1;
-    private int mCurrentValue;
-    private int mDefaultValue = -1;
-    private int mMax = 100;
-    private String mUnits = "";
-    private String mDefaultText = "";
-    private SeekBar mSeekBar;
-    private TextView mTitle;
-    private TextView mStatusText;
+    protected Context mContext;
+    protected boolean mAllowEdit;
+    protected View mTextContainer;
+    protected int mMin = 0;
+    protected int mInterval = 1;
+    protected int mCurrentValue;
+    protected int mDefaultValue = -1;
+    protected int mMax = 255;
+    protected String mUnits = "";
+    protected SeekBar mSeekBar;
+    protected TextView mTitle;
+    protected TextView mStatusText;
+    protected AlertDialog mEditValueDialog;
 
     public CustomSeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr,
             int defStyleRes) {
@@ -51,8 +54,9 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         final TypedArray a = context.obtainStyledAttributes(
                 attrs, R.styleable.CustomSeekBarPreference);
 
-        mMax = attrs.getAttributeIntValue(ANDROIDNS, "max", 100);
-        mMin = attrs.getAttributeIntValue(SETTINGS_NS, "min", 0);
+        mAllowEdit = attrs.getAttributeBooleanValue(null, "allowEditText", false);
+        mMax = attrs.getAttributeIntValue(ANDROIDNS, "max", 255);
+        mMin = attrs.getAttributeIntValue(ANDROIDNS, "min", 0);
         mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", -1);
         if (mDefaultValue > mMax) {
             mDefaultValue = mMax;
