@@ -16,9 +16,9 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dirtyunicorns.support">
+    package="com.xd.xdroidui">
 
     <uses-sdk
-        android:minSdkVersion="27" />
+        android:minSdkVersion="30" />
 
 </manifest>

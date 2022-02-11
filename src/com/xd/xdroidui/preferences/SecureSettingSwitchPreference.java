@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod project
+ * Copyright (C) 2014 The CyanogenMod project
  * Copyright (C) 2017 AICP
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,27 +15,27 @@
  * limitations under the License.
  */
 
-package com.dirtyunicorns.support.preferences;
+package com.xd.xdroidui.preferences;
 
 import android.content.Context;
 import android.support.v14.preference.SwitchPreference;
 import android.util.AttributeSet;
 
-public class GlobalSettingSwitchPreference extends SwitchPreference {
+public class SecureSettingSwitchPreference extends SwitchPreference {
 
-    public GlobalSettingSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
+    public SecureSettingSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setPreferenceDataStore(new GlobalSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
-    public GlobalSettingSwitchPreference(Context context, AttributeSet attrs) {
+    public SecureSettingSwitchPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setPreferenceDataStore(new GlobalSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
-    public GlobalSettingSwitchPreference(Context context) {
+    public SecureSettingSwitchPreference(Context context) {
         super(context);
-        setPreferenceDataStore(new GlobalSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new SecureSettingsStore(context.getContentResolver()));
     }
 
     @Override
