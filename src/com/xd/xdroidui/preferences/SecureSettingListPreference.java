@@ -17,7 +17,7 @@
 package com.xd.xdroidui.preferences;
 
 import android.content.Context;
-import android.support.v7.preference.ListPreference;
+import androidx.preference.ListPreference;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 

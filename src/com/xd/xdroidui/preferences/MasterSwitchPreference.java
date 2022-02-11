@@ -25,10 +25,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Switch;
 
-import com.xd.xdroidui.R;
-
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.preference.PreferenceViewHolder;
+
+import com.xd.xdroidui.R;
 
 /**
  * A custom preference that provides inline switch toggle. It has a mandatory field for title, and
