@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.settings.custom.preference;
+package com.xd.mnmlist.preferences;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -33,9 +33,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.android.settings.custom.preference.RemotePreference.ACTION_REFRESH_PREFERENCE;
-import static com.android.settings.custom.preference.RemotePreference.ACTION_UPDATE_PREFERENCE;
-import static com.android.settings.custom.preference.RemotePreference.EXTRA_KEY;
+import static com.xd.mnmlist.preferences.RemotePreference.ACTION_REFRESH_PREFERENCE;
+import static com.xd.mnmlist.preferences.RemotePreference.ACTION_UPDATE_PREFERENCE;
+import static com.xd.mnmlist.preferences.RemotePreference.EXTRA_KEY;
 
 /**
  * Manages attaching and detaching of RemotePreferences and optimizes callbacks

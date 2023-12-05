@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.custom.preference;
+package com.xd.mnmlist.preferences;
 
 import android.content.Context;
 import android.provider.Settings;

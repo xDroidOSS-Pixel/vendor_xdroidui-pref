@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.custom.preference;
+package com.xd.mnmlist.preferences;
 
 import android.content.Context;
 import android.provider.Settings;
@@ -24,19 +24,19 @@ import androidx.preference.PreferenceDataStore;
 
 import com.android.settingslib.widget.MainSwitchPreference;
 
-public class SystemSettingMainSwitchPreference extends MainSwitchPreference {
+public class GlobalSettingMainSwitchPreference extends MainSwitchPreference {
 
-    public SystemSettingMainSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
+    public GlobalSettingMainSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setPreferenceDataStore(new DataStore());
     }
 
-    public SystemSettingMainSwitchPreference(Context context, AttributeSet attrs) {
+    public GlobalSettingMainSwitchPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPreferenceDataStore(new DataStore());
     }
 
-    public SystemSettingMainSwitchPreference(Context context) {
+    public GlobalSettingMainSwitchPreference(Context context) {
         super(context, null);
         setPreferenceDataStore(new DataStore());
     }
@@ -44,12 +44,12 @@ public class SystemSettingMainSwitchPreference extends MainSwitchPreference {
     private class DataStore extends PreferenceDataStore {
         @Override
         public void putBoolean(String key, boolean value) {
-            Settings.System.putInt(getContext().getContentResolver(), key, value ? 1 : 0);
+            Settings.Global.putInt(getContext().getContentResolver(), key, value ? 1 : 0);
         }
 
         @Override
         public boolean getBoolean(String key, boolean defaultValue) {
-            return Settings.System.getInt(getContext().getContentResolver(), key,
+            return Settings.Global.getInt(getContext().getContentResolver(), key,
                     defaultValue ? 1 : 0) != 0;
         }
     }

@@ -14,36 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.settings.custom.preference;
+package com.xd.mnmlist.preferences;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
+import androidx.preference.DropDownPreference;
 import androidx.preference.PreferenceDataStore;
 import androidx.preference.PreferenceViewHolder;
-import androidx.preference.SwitchPreference;
 
 /**
- * A SwitchPreference which can automatically remove itself from the hierarchy
+ * A Preference which can automatically remove itself from the hierarchy
  * based on constraints set in XML.
  */
-public abstract class SelfRemovingSwitchPreference extends SwitchPreference {
+public abstract class SelfRemovingDropDownPreference extends DropDownPreference {
 
     private final ConstraintsHelper mConstraints;
 
-    public SelfRemovingSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
+    public SelfRemovingDropDownPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mConstraints = new ConstraintsHelper(context, attrs, this);
         setPreferenceDataStore(new DataStore());
     }
 
-    public SelfRemovingSwitchPreference(Context context, AttributeSet attrs) {
+    public SelfRemovingDropDownPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         mConstraints = new ConstraintsHelper(context, attrs, this);
         setPreferenceDataStore(new DataStore());
     }
 
-    public SelfRemovingSwitchPreference(Context context) {
+    public SelfRemovingDropDownPreference(Context context) {
         super(context);
         mConstraints = new ConstraintsHelper(context, null, this);
         setPreferenceDataStore(new DataStore());
@@ -70,37 +70,37 @@ public abstract class SelfRemovingSwitchPreference extends SwitchPreference {
     }
 
     protected abstract boolean isPersisted();
-    protected abstract void putBoolean(String key, boolean value);
-    protected abstract boolean getBoolean(String key, boolean defaultValue);
+    protected abstract void putString(String key, String value);
+    protected abstract String getString(String key, String defaultValue);
 
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
-        final boolean checked;
+        final String value;
         if (!restorePersistedValue || !isPersisted()) {
             if (defaultValue == null) {
                 return;
             }
-            checked = (boolean) defaultValue;
+            value = (String) defaultValue;
             if (shouldPersist()) {
-                persistBoolean(checked);
+                persistString(value);
             }
         } else {
             // Note: the default is not used because to have got here
             // isPersisted() must be true.
-            checked = getBoolean(getKey(), false /* not used */);
+            value = getString(getKey(), null /* not used */);
         }
-        setChecked(checked);
+        setValue(value);
     }
 
     private class DataStore extends PreferenceDataStore {
         @Override
-        public void putBoolean(String key, boolean value) {
-            SelfRemovingSwitchPreference.this.putBoolean(key, value);
+        public void putString(String key, String value) {
+            SelfRemovingDropDownPreference.this.putString(key, value);
         }
 
         @Override
-        public boolean getBoolean(String key, boolean defaultValue) {
-            return SelfRemovingSwitchPreference.this.getBoolean(key, defaultValue);
+        public String getString(String key, String defaultValue) {
+            return SelfRemovingDropDownPreference.this.getString(key, defaultValue);
         }
     }
 }
